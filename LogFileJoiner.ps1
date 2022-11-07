@@ -1,5 +1,5 @@
 ﻿$pcName = $env:computername
-$logFileLocation = "\\srvsccm\sources$\Applications\Software Script\Report\Software Data Logs\"
+$logFileLocation = "\\example\of$\file\Location\Report\Software Data Logs\"
 
 function Tidy-Logs {
   Write-output ("Loading files...") ##### CMD OUTPUT
@@ -8,9 +8,9 @@ function Tidy-Logs {
   while ($files.count -ne 0) { ### change -ne to -gt
     $logFile = Get-ChildItem -Path $logFileLocation -filter "ST*.csv" -File | Select-Object -First 1                     ### first ST file log
     $logDate = $logFile.LastWriteTime.ToString("dd MM yyyy")                                                             ### ST file log date
-    $outputlogFileLocation = "\\srvsccm\sources$\Applications\Software Script\Report\Software Data Logs\${logDate}.csv" ### joined log file name/location
+    $outputlogFileLocation = "\\example\of$\file\Location\Report\Software Data Logs\${logDate}.csv" ### joined log file name/location
     $logFile = $logFile.Basename                                                                                        ### ST file log name
-    $inputlogFileLocation = "\\srvsccm\sources$\Applications\Software Script\Report\Software Data Logs\${logFile}.csv" ### input logfile
+    $inputlogFileLocation = "\\example\of$\file\Location\Report\Software Data Logs\${logFile}.csv" ### input logfile
 
     Check-Log-File-Exists
 
